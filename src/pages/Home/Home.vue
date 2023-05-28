@@ -1,23 +1,23 @@
 <template>
   <section class="container flex flex-col items-center px-6 py-12 mx-auto lg:flex-row">
     <div class="lg:w-1/2">
-      <h1 class="max-w-xl font-serif text-4xl font-medium tracking-wide text-[#343D33] capitalize md:text-6xl ">A beatiful adventure awaits</h1>
+      <h1 class="max-w-xl font-serif text-4xl font-medium tracking-wide text-[#343D33] capitalize md:text-6xl ">上海申工液压有限公司</h1>
 
-      <p class="max-w-lg mt-4 text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. At magnam voluptatibus perferendis odit optio.</p>
+      <p class="max-w-lg mt-4 text-gray-500">上海申工液压有限公司是一家集销售、配件供应、技术支持、售后服务于一体，能够为客户提供高效物流装卸搬运设备的专业叉车设备服务提供商。</p>
 
       <div class="mt-6 sm:flex sm:items-center">
         <a href="#" class="bg-[#475F45] hover:bg-[#475F45]/80 duration-300 transition-colors border-2 border-[#475F45] px-6 block text-center py-3 uppercase text-sm font-bold leading-4 tracking-widest text-white ">
-          Buy Tickets
+          去购买
         </a>
 
-        <a href="#" class="border-2 text-sm duration-300 transition-colors hover:bg-[#475F45] hover:text-white font-bold leading-4 mt-4 sm:mt-0 tracking-widest text-[#475F45] sm:mx-4 border-[#475F45] px-6 block text-center py-3 uppercase">
-          Learn More
+        <a href="#productList" class="border-2 text-sm duration-300 transition-colors hover:bg-[#475F45] hover:text-white font-bold leading-4 mt-4 sm:mt-0 tracking-widest text-[#475F45] sm:mx-4 border-[#475F45] px-6 block text-center py-3 uppercase">
+          更多产品
         </a>
       </div>
     </div>
 
     <div class="h-[38rem] mt-12 lg:mt-0 w-full mx-auto max-w-md overflow-hidden rounded-t-full outline outline-4 outline-offset-4 outline-[#475F45]/40">
-      <img class="object-cover w-full h-full rounded-t-full " src="https://images.unsplash.com/photo-1531163859947-fa484f6eacd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="main page" />
+      <img class="object-cover w-full h-full rounded-t-full " :src="state.bannerSrc" alt="main page" />
     </div>
   </section>
 
@@ -45,7 +45,7 @@
     </div>
   </section>
 
-  <section class="container px-6 py-12 mx-auto lg:py-16">
+  <section class="container px-6 py-12 mx-auto lg:py-16" id="productList">
     <h3 class="font-serif text-3xl text-[#343D33] capitalize md:text-4xl lg:text-5xl">
       News & Updates
     </h3>
@@ -102,4 +102,11 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import bannerSrc from "@/assets/imgs/banner.jpg";
+import {reactive} from "vue";
+
+const state = reactive({
+  bannerSrc
+})
+</script>

@@ -8,8 +8,8 @@
           </svg>
 
           <div class="mx-1 text-gray-700">
-            <h3 class="uppercase tracking-[0.15em] font-medium ">Mist Gardens</h3>
-            <p class="text-xs italic ">Museum & Botanical Garden</p>
+            <h3 class="uppercase tracking-[0.05em] font-medium ">上海申工液压有限公司</h3>
+            <p class="text-xs italic tracking-[0.3em]">匠心本源 · 品质为先</p>
           </div>
         </a>
 
@@ -22,27 +22,26 @@
 
       <div :class="[isOpen ? 'opacity-100 ' : 'opacity-0 -translate-x-full ']" class=" absolute lg:static transition-all duration-300 w-full py-12 lg:py-0 left-1/2 lg:opacity-100 lg:translate-x-0 lg:bg-transparent lg:w-auto -translate-x-1/2 top-20 sm:top-24 bg-[#475F45] ">
         <nav class="flex flex-col items-center space-y-8 lg:flex-row lg:space-y-0 lg:-mx-4">
-          <a href="#" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-            Home
-          </a>
+          <router-link to="/" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
+            首页
+          </router-link>
 
-          <a href="#" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-            Visit
-          </a>
+          <router-link to="/about" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
+            关于我们
+          </router-link>
 
-          <a href="#" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-            Exhibitions
-          </a>
+          <router-link to="/join" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
+            加入我们
+          </router-link>
 
-          <a href="#" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-            Programs & Events
-          </a>
+          <router-link to="/contact" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
+            联系我们
+          </router-link>
 
-          <a href="#" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-            Store
-          </a>
-
-          <a class="px-8 py-2.5 text-white lg:text-[#475F45] lg:hover:bg-[#475F45] lg:hover:text-white duration-300 transition-colors font-medium lg:mx-4 border-2 lg:border-[#475F45] border-white" href="#">Membership</a>
+          <a class="flex justify-around items-center px-8 py-2.5 text-white lg:text-[#475F45] lg:hover:bg-[#475F45] lg:hover:text-white duration-300 transition-colors font-medium lg:mx-4 border-2 lg:border-[#475F45] border-white" :href="`tel:${ company.phoneNumber }`">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+            </svg>{{ company.phoneNumber }}</a>
         </nav>
       </div>
     </div>
@@ -51,6 +50,8 @@
 
 <script setup>
 import {ref} from "vue";
+import { useCompany } from "@/store";
 
 const isOpen = ref(false);
+const company = useCompany();
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ height: headerHeight + 'px' }">
+  <div :style="{ height: headerHeight + 'px', position: 'relative', zIndex: 999 }">
     <header class="fixed left-0 top-0 right-0 sw-header bg-[#ffffff]">
       <div class="container px-6 py-6 mx-auto lg:flex lg:items-center lg:justify-between">
         <div class="flex items-center justify-between ">
@@ -51,16 +51,19 @@
 </template>
 
 <script setup>
-import {onMounted, onUnmounted, ref} from "vue";
+import { onMounted, onUnmounted, ref, nextTick } from "vue";
 import { useCompany } from "@/store";
+import { debounce } from "@/utils";
 
 const isOpen = ref(false);
 const company = useCompany();
 const headerHeight = ref(0);
-const calculatorHeaderHeight = () => {
-  const container = document.getElementsByClassName('sw-header')[0];
-  headerHeight.value = container.offsetHeight;
-}
+const calculatorHeaderHeight = debounce(() => {
+  nextTick(() => {
+    const container = document.getElementsByClassName('sw-header')[0];
+    headerHeight.value = container.offsetHeight;
+  })
+}, 500, true);
 onMounted(() => {
   calculatorHeaderHeight();
   window.addEventListener('resize', calculatorHeaderHeight);

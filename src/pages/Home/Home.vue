@@ -98,9 +98,9 @@
           </div>
         </div>
 
-        <a class="inline-flex px-6 py-3 mt-6 text-[#000000] border-2 border-[#000000] hover:bg-[#000000] hover:text-[#ffffff] duration-300 transition-colors" href="#">
+        <router-link to="/project-list" class="inline-flex px-6 py-3 mt-6 text-[#000000] border-2 border-[#000000] hover:bg-[#000000] hover:text-[#ffffff] duration-300 transition-colors">
           更多产品
-        </a>
+        </router-link>
       </div>
     </div>
   </section>

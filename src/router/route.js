@@ -12,6 +12,11 @@ const routes = [
     component: () => import('@/pages/About/About.vue'),
   },
   {
+    path: '/project-list',
+    meta: { title: 'ProjectList' },
+    component: () => import('@/pages/ProjectList/ProjectList.vue'),
+  },
+  {
     path: '/:catchAll(.*)*',
     name: '404',
     meta: { title: '404' },

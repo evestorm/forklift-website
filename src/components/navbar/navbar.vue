@@ -21,25 +21,14 @@
           </button>
         </div>
 
-        <div :class="[isOpen ? 'opacity-100 ' : 'opacity-0 -translate-x-full ']" class=" absolute lg:static transition-all duration-300 w-full py-12 lg:py-0 left-1/2 lg:opacity-100 lg:translate-x-0 lg:bg-transparent lg:w-auto -translate-x-1/2 top-20 sm:top-24 bg-[#475F45] ">
+        <div :class="[isOpen ? 'opacity-100 ' : 'opacity-0 -translate-x-full ']" class=" absolute lg:static transition-all duration-300 w-full py-12 lg:py-0 left-1/2 lg:opacity-100 lg:translate-x-0 lg:bg-transparent lg:w-auto -translate-x-1/2 top-20 sm:top-24 bg-[#142580] ">
           <nav class="flex flex-col items-center space-y-8 lg:flex-row lg:space-y-0 lg:-mx-4">
-            <router-link to="/" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-              首页
-            </router-link>
-
-            <router-link to="/about" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-              关于我们
-            </router-link>
-
-            <router-link to="/join" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-              加入我们
-            </router-link>
-
-            <router-link to="/contact" class="font-medium text-white lg:text-[#475F45] lg:hover:text-gray-400 lg:mx-4">
-              联系我们
-            </router-link>
-
-            <a class="flex justify-around items-center px-8 py-2.5 text-white lg:text-[#475F45] lg:hover:bg-[#475F45] lg:hover:text-white duration-300 transition-colors font-medium lg:mx-4 border-2 lg:border-[#475F45] border-white" :href="`tel:${ company.phoneNumber }`">
+            <template v-for="(item, idx) of menu.menuList">
+              <router-link :to="item.to" class="font-medium text-white lg:text-[#142580] lg:hover:text-gray-400 lg:mx-4" :class="idx !== menu.activeIndex ? inactiveClass : activeClass">
+                {{ item.name }}
+              </router-link>
+            </template>
+            <a class="flex justify-around items-center px-8 py-2.5 text-white lg:text-[#142580] lg:hover:bg-[#142580] lg:hover:text-white duration-300 transition-colors font-medium lg:mx-4 border-2 lg:border-[#142580] border-white" :href="`tel:${ company.phoneNumber }`">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
               </svg>{{ company.phoneNumber }}</a>
@@ -51,19 +40,29 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, nextTick } from "vue";
-import { useCompany } from "@/store";
+import {onMounted, onUnmounted, ref, nextTick, watch} from "vue";
+import { useCompany, useMenu } from "@/store";
 import { debounce } from "@/utils";
+import { useRoute } from 'vue-router';
 
 const isOpen = ref(false);
 const company = useCompany();
+const menu = useMenu();
+const route = useRoute();
 const headerHeight = ref(0);
+const activeClass = ref('text-[#00ffe7] lg:text-[#ff0000]');
+const inactiveClass = ref('');
 const calculatorHeaderHeight = debounce(() => {
   nextTick(() => {
     const container = document.getElementsByClassName('sw-header')[0];
     headerHeight.value = container.offsetHeight;
   })
 }, 500, true);
+watch(() => route.name, (n, o) => {
+  isOpen.value = false;
+  const idx = menu.menuList.findIndex(item => item.to.name === n);
+  menu.setActiveIndex(idx);
+})
 onMounted(() => {
   calculatorHeaderHeight();
   window.addEventListener('resize', calculatorHeaderHeight);

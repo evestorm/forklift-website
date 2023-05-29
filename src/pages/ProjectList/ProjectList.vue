@@ -1,110 +1,132 @@
 <template>
-  <aside-view />
-  <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
-    <!-- cards -->
-    <div class="w-full px-6 py-6 mx-auto">
-      <!-- row 1 -->
-      <div class="flex flex-wrap -mx-3">
-        <!-- card1 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-          <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
-            <div class="flex-auto p-4">
-              <div class="flex flex-row -mx-3">
-                <div class="flex-none w-2/3 max-w-full px-3">
-                  <div>
-                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">Today's Money</p>
-                    <h5 class="mb-0 font-bold">
-                      $53,000
-                      <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
-                    </h5>
-                  </div>
-                </div>
-                <div class="px-3 text-right basis-1/3">
-                  <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                    <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- card2 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-          <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
-            <div class="flex-auto p-4">
-              <div class="flex flex-row -mx-3">
-                <div class="flex-none w-2/3 max-w-full px-3">
-                  <div>
-                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">Today's Users</p>
-                    <h5 class="mb-0 font-bold">
-                      2,300
-                      <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
-                    </h5>
-                  </div>
-                </div>
-                <div class="px-3 text-right basis-1/3">
-                  <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                    <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- card3 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-          <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
-            <div class="flex-auto p-4">
-              <div class="flex flex-row -mx-3">
-                <div class="flex-none w-2/3 max-w-full px-3">
-                  <div>
-                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">New Clients</p>
-                    <h5 class="mb-0 font-bold">
-                      +3,462
-                      <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span>
-                    </h5>
-                  </div>
-                </div>
-                <div class="px-3 text-right basis-1/3">
-                  <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                    <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- card4 -->
-        <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
-          <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
-            <div class="flex-auto p-4">
-              <div class="flex flex-row -mx-3">
-                <div class="flex-none w-2/3 max-w-full px-3">
-                  <div>
-                    <p class="mb-0 font-sans font-semibold leading-normal text-sm">Sales</p>
-                    <h5 class="mb-0 font-bold">
-                      $103,430
-                      <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span>
-                    </h5>
-                  </div>
-                </div>
-                <div class="px-3 text-right basis-1/3">
-                  <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                    <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap w-full mb-8">
+      <div class="w-full mb-6 lg:mb-0">
+        <h1 class="sm:text-4xl text-5xl font-bold font-medium title-font mb-2 text-gray-900">产品列表</h1>
+        <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+      </div>
+    </div>
+    <aside-view :data="projectNav" @handle-active="handleActive" />
+    <div class="flex flex-wrap -m-4">
+      <div
+          v-for="item of activeList" :key="item.id"
+          class="lg:w-1/4 p-4 w-1/2 card">
+        <a class="block relative h-50 rounded overflow-hidden">
+          <img alt="ecommerce" class="object-cover object-center w-full h-full block" :src="item.src">
+        </a>
+        <div class="mt-4">
+<!--          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>-->
+          <h2 class="text-gray-900 title-font text-lg font-medium">{{ item.name }}</h2>
+<!--          <p class="mt-1">$16.00</p>-->
         </div>
       </div>
     </div>
-    <!-- end cards -->
-  </main>
+  </div>
 </template>
 <script setup>
+import { reactive, computed } from 'vue';
 import AsideView from "@/components/aside/asideView.vue";
+const projectNav = reactive([
+  {
+    id: 1,
+    name: '堆高车',
+    active: false,
+  },
+  {
+    id: 2,
+    name: '搬运车',
+    active: false,
+  },
+  {
+    id: 3,
+    name: '升降平台',
+    active: false,
+  },
+  {
+    id: 4,
+    name: '专业配件',
+    active: false,
+  },
+]);
+const projectList = reactive({
+  1: [
+    {
+      id: 1,
+      name: '站驾式全电动堆高车',
+      src: 'http://shddcc.com/static/picture/20200413125349544954.jpg',
+    },
+    {
+      id: 2,
+      name: '步行式全电动堆高车',
+      src: 'http://shddcc.com/static/picture/20200413125478217821.jpg',
+    },
+    {
+      id: 3,
+      name: '半电动堆高车',
+      src: 'http://shddcc.com/static/picture/20200413125483868386.jpg',
+    },
+    {
+      id: 4,
+      name: '前移式无腿堆高车',
+      src: 'http://shddcc.com/static/picture/20200413125611371137.jpg',
+    },
+    {
+      id: 5,
+      name: '配重式无腿堆高车',
+      src: 'http://shddcc.com/static/picture/20200413125628462846.jpg'
+    }
+  ],
+  2: [
+    {
+      id: 6,
+      name: '全电动搬运车',
+      src: 'http://shddcc.com/static/picture/20200413125632003200.jpg',
+    },
+    {
+      id: 7,
+      name: '手动搬运车',
+      src: 'http://shddcc.com/static/picture/20200427161691309130.jpg',
+    },
+    {
+      id: 8,
+      name: '小金刚锂电搬运车',
+      src: 'http://shddcc.com/static/picture/20200427162576327632.jpg',
+    },
+  ],
+  3: [
+    {
+      id: 9,
+      name: '移动升降机',
+      src: 'http://shddcc.com/static/picture/20200413125632003200.jpg',
+    },
+  ],
+  4: [
+    {
+      id: 10,
+      name: '移动升降机',
+      src: 'http://shddcc.com/static/picture/20200413125632003200.jpg',
+    },
+  ],
+});
+const activeList = computed(() => {
+  const activeNav = projectNav.find(v => v.active);
+  return activeNav ? projectList[activeNav.id] : Object.values(projectList).reduce((pre, cur) => {
+    return pre.concat(...cur);
+  }, []);
+});
+const handleActive = (id) => {
+  projectNav.forEach((item) => {
+    if (item.active) {
+      item.active = false;
+      return;
+    }
+    item.active = item.id === id;
+  });
+}
 </script>
+
+<style lang="scss" scoped>
+.card {
+  cursor: pointer;
+}
+</style>

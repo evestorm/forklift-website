@@ -19,14 +19,15 @@
       </div>
 
       <div class="flex flex-col space-y-4">
-        <router-link to="/" class="text-white hover:text-gray-300">首页</router-link>
-        <router-link to="/about" class="text-white hover:text-gray-300">关于我们</router-link>
-        <router-link to="/join" class="text-white hover:text-gray-300">加入我们</router-link>
-        <router-link to="/contact" class="text-white hover:text-gray-300">联系我们</router-link>
+        <router-link :to="{ name: 'home' }" class="text-white hover:text-gray-300">首页</router-link>
+        <router-link :to="{ name: 'project-list' }" class="text-white hover:text-gray-300">产品展示</router-link>
+        <router-link :to="{ name: 'about' }" class="text-white hover:text-gray-300">关于我们</router-link>
+        <router-link :to="{ name: 'join-us' }" class="text-white hover:text-gray-300">加入我们</router-link>
+        <router-link :to="{ name: 'contact-us' }" class="text-white hover:text-gray-300">联系我们</router-link>
       </div>
 
       <div>
-        <p class="font-medium text-white capitalize">Connect</p>
+        <p class="font-medium text-white capitalize">联系方式</p>
 
         <div class="flex mt-6 -mx-4">
           <a class="mx-4 text-white hover:text-gray-300" :href="`tel:${ company.phoneNumber }`">

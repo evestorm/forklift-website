@@ -6,17 +6,17 @@
       <p class="max-w-lg mt-4 text-gray-500">上海申工液压有限公司是一家集销售、配件供应、技术支持、售后服务于一体，能够为客户提供高效物流装卸搬运设备的专业叉车设备服务提供商。</p>
 
       <div class="mt-6 sm:flex sm:items-center">
-        <a href="#" class="bg-[#475F45] hover:bg-[#475F45]/80 hover:text-[#ffffff] duration-300 transition-colors border-2 border-[#475F45] px-6 block text-center py-3 uppercase text-sm font-bold leading-4 tracking-widest text-white ">
+        <a href="#" class="bg-[#142580] hover:bg-[#142580]/80 hover:text-[#ffffff] duration-300 transition-colors border-2 border-[#142580] px-6 block text-center py-3 uppercase text-sm font-bold leading-4 tracking-widest text-white ">
           去购买
         </a>
 
-        <a href="#productList" class="border-2 text-sm duration-300 transition-colors hover:bg-[#475F45] hover:text-white font-bold leading-4 mt-4 sm:mt-0 tracking-widest text-[#475F45] sm:mx-4 border-[#475F45] px-6 block text-center py-3 uppercase">
+        <a href="#productList" class="border-2 text-sm duration-300 transition-colors hover:bg-[#142580] hover:text-white font-bold leading-4 mt-4 sm:mt-0 tracking-widest text-[#142580] sm:mx-4 border-[#142580] px-6 block text-center py-3 uppercase">
           更多产品
         </a>
       </div>
     </div>
 
-    <div class="h-[38rem] mt-12 lg:mt-0 w-full mx-auto max-w-md overflow-hidden rounded-t-full outline outline-4 outline-offset-4 outline-[#475F45]/40">
+    <div class="h-[38rem] mt-12 lg:mt-0 w-full mx-auto max-w-md overflow-hidden rounded-t-full outline outline-4 outline-offset-4 outline-[#142580]/40">
       <img class="object-cover w-full h-full rounded-t-full " :src="state.bannerSrc" alt="main page" />
     </div>
   </section>

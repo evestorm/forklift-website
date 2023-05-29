@@ -24,7 +24,7 @@
         <div :class="[isOpen ? 'opacity-100 ' : 'opacity-0 -translate-x-full ']" class=" absolute lg:static transition-all duration-300 w-full py-12 lg:py-0 left-1/2 lg:opacity-100 lg:translate-x-0 lg:bg-transparent lg:w-auto -translate-x-1/2 top-20 sm:top-24 bg-[#142580] ">
           <nav class="flex flex-col items-center space-y-8 lg:flex-row lg:space-y-0 lg:-mx-4">
             <template v-for="(item, idx) of menu.menuList">
-              <router-link :to="item.to" class="font-medium text-white lg:text-[#142580] lg:hover:text-gray-400 lg:mx-4" :class="idx !== menu.activeIndex ? inactiveClass : activeClass">
+              <router-link :to="item.to" class="font-medium lg:text-[#142580] lg:hover:text-gray-400 lg:mx-4" :class="idx !== menu.activeIndex ? inactiveClass : activeClass">
                 {{ item.name }}
               </router-link>
             </template>
@@ -51,7 +51,7 @@ const menu = useMenu();
 const route = useRoute();
 const headerHeight = ref(0);
 const activeClass = ref('text-[#00ffe7] lg:text-[#ff0000]');
-const inactiveClass = ref('');
+const inactiveClass = ref('text-white');
 const calculatorHeaderHeight = debounce(() => {
   nextTick(() => {
     const container = document.getElementsByClassName('sw-header')[0];
@@ -59,8 +59,10 @@ const calculatorHeaderHeight = debounce(() => {
   })
 }, 500, true);
 watch(() => route.name, (n, o) => {
+  console.log(n, o);
   isOpen.value = false;
   const idx = menu.menuList.findIndex(item => item.to.name === n);
+  console.log(idx)
   menu.setActiveIndex(idx);
 })
 onMounted(() => {

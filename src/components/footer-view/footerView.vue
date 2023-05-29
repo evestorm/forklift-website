@@ -19,11 +19,11 @@
       </div>
 
       <div class="flex flex-col space-y-4">
-        <router-link :to="{ name: 'home' }" class="text-white hover:text-gray-300">首页</router-link>
-        <router-link :to="{ name: 'project-list' }" class="text-white hover:text-gray-300">产品展示</router-link>
-        <router-link :to="{ name: 'about' }" class="text-white hover:text-gray-300">关于我们</router-link>
-        <router-link :to="{ name: 'join-us' }" class="text-white hover:text-gray-300">加入我们</router-link>
-        <router-link :to="{ name: 'contact-us' }" class="text-white hover:text-gray-300">联系我们</router-link>
+        <template v-for="item of menu.menuList">
+          <router-link :to="item.to" class="text-white hover:text-gray-300">
+            {{ item.name }}
+          </router-link>
+        </template>
       </div>
 
       <div>
@@ -53,6 +53,7 @@
 </template>
 
 <script setup>
-import { useCompany } from "@/store";
+import { useCompany, useMenu } from "@/store";
 const company = useCompany();
+const menu = useMenu();
 </script>

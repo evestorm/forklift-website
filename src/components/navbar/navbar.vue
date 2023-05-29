@@ -59,10 +59,8 @@ const calculatorHeaderHeight = debounce(() => {
   })
 }, 500, true);
 watch(() => route.name, (n, o) => {
-  console.log(n, o);
   isOpen.value = false;
   const idx = menu.menuList.findIndex(item => item.to.name === n);
-  console.log(idx)
   menu.setActiveIndex(idx);
 })
 onMounted(() => {
